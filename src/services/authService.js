@@ -22,8 +22,6 @@ const authService = {
 
         const hashedPassword = await bcrypt.hash(password, security)
 
-            
-        try {
             const user = new User({
             nameTag,
             email: email.toLowerCase(),
@@ -31,11 +29,7 @@ const authService = {
         })
 
             await user.save()
-
             return token.signToken({user: user._id})
-        } catch (error) {
-            throw error 
-        }
             
             
     },

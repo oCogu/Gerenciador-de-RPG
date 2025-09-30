@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import generateId from "../utils/nanoid.js";
+import nanoid from "../utils/nanoid.js";
 
 const Schema = mongoose.Schema;
 
@@ -15,7 +15,7 @@ const userSchema = new Schema({
 
 userSchema.pre("save", async function (next) {
   if (!this.publicId) {
-    this.publicId = await generateId();
+    this.publicId = await nanoid.generateUserId();
   }
   next();
 
